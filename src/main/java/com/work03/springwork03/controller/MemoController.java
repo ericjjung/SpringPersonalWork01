@@ -32,6 +32,7 @@ public class MemoController {
     @PostMapping("/api/memos")
     public ResponseDto createMemo(@RequestBody MemoRequestDto requestDto){
         Memo memo = new Memo(requestDto);
+        memo = memoRepository.save(memo);
         List<Memo> setList = new ArrayList<>();
         setList.add(memo);
         return new ResponseDto(setList);
@@ -75,12 +76,15 @@ public class MemoController {
     }
 
     @DeleteMapping("/api/memos/{id}")
-    public ResponseDto deleteMemo(@PathVariable Long id,@RequestBody MemoRequestDto requestDto){
+    public Map<String,String> deleteMemo(@PathVariable Long id){
             memoRepository.deleteById(id);
-            List<Memo> memoList = new ArrayList<>();
-            memoList.add(memoRepository.findById(id).get());
+            Map<String,String> response = new HashMap<>();
+            response.put("success","true");
+            response.put("data",null);
+            response.put("error",null);
 
 
-        return new ResponseDto(memoList);
+
+        return response;
     }
 }

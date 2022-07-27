@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -18,6 +20,7 @@ import java.util.List;
 public class ResponseDto {
 
    private Boolean success;
+   @Nullable
    private List<Memo> data;
    private String error;
 
